@@ -1,11 +1,29 @@
+local disable_diag = [[
+local function setup_diags()
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = false,
+        signs = true,
+        update_in_insert = false,
+        underline = true,
+    })
+end
+setup_diags()
+]]
 return {
     "neovim/nvim-lspconfig",
+    dependecies = {
+        "willamboman/mason.nvim",
+        "willamboman/mason-lspconfig.nvim",
+        "WhoIsSethDaniel//mason-tool-installer.nvim",
+        { "j-hui/fidge.nvim", ops = {} },
+        { "folke/neodev.nvim", ops = {} },
+    },
     opts = {
         servers = {
             gopls = {
                 settings = {
                     gopls = {
-                        gofumpt = true,
+                        gofumpt = false,
                         codelenses = {
                             gc_details = false,
                             generate = true,
