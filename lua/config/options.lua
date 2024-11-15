@@ -4,3 +4,4 @@
 --
 vim.opt.tabstop = 4
 vim.opt.scrolloff = 20
+vim.g.minipairs_disable = true
